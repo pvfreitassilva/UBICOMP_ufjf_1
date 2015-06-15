@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name"></string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="opcoes">
+        <item>Perfil atual</item>
+        <item>Silencioso (com vibração)</item>
+        <item>Silencioso (sem vibração)</item>
+        <item>Ocupado</item>
+        <item>Só mensagens</item>
+    </string-array>
+
+    <string name="title_activity_perfis">Marcar local</string>
+    <string name="title_activity_editperfil">Editar perfil</string>
+
+</resources>
