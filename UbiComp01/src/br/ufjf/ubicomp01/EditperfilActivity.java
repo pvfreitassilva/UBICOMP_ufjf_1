@@ -1,59 +1,58 @@
 package br.ufjf.ubicomp01;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
 public class EditperfilActivity extends Activity {
+	
+	private ArrayList<Perfil> listPerfil;
+	private int id;
+	private Perfil perfil;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		Intent i = getIntent();
-		String stringExtra[];
 		
 		setContentView(R.layout.editperfil);
 		
 		SeekBar volume = (SeekBar) findViewById(R.id.volume);
 		volume.setMax(100);
 		
-		if(i.getBooleanExtra("NOVOPERFIL", false)==false){
-			
-			stringExtra = i.getStringExtra("EDITPERFIL").split(",");
-			
-			Log.d("Teste", stringExtra[0] + " 0");
-			Log.d("Teste", stringExtra[1] + " 1");
-			Log.d("Teste", stringExtra[2] + " 2");
-			Log.d("Teste", stringExtra[3] + " 3");
-			Log.d("Teste", stringExtra[4] + " 4");
-			Log.d("Teste", stringExtra[5] + " 5");
-			Log.d("Teste", stringExtra[6] + " 6");
-			//Log.d("Teste", stringExtra[7]);
-			
+		Intent intent = getIntent();
+		
+		listPerfil = (ArrayList<Perfil>) intent.getSerializableExtra("LISTPERFIL");
+		
+		id = intent.getIntExtra("ID", -1);
+		
+		if(id!=0){
+			perfil = listPerfil.get(id-1);
 			EditText nome = (EditText) findViewById(R.id.nome);
-			nome.setText(stringExtra[1]);
-			
-			//SeekBar volume = (SeekBar) findViewById(R.id.volume);
-			volume.setProgress(new Integer(stringExtra[2]));
-			
+			nome.setText(perfil.nome);
+			volume.setProgress(perfil.volume);
 			CheckBox vibrar = (CheckBox) findViewById(R.id.vibrar);
-			vibrar.setSelected(new Boolean(stringExtra[3]));
-			
+			vibrar.setSelected(perfil.vibrar);
 			CheckBox recusarChamadas = (CheckBox) findViewById(R.id.recusarChamadas);
-			vibrar.setSelected(new Boolean(stringExtra[4]));
-			
+			recusarChamadas.setSelected(perfil.recursarChamadas);
 			CheckBox responderChamadas = (CheckBox) findViewById(R.id.responderChamadas);
-			vibrar.setSelected(new Boolean(stringExtra[5]));
-			
+			responderChamadas.setSelected(perfil.responderChamadas);
 			EditText mensagemPadrao = (EditText) findViewById(R.id.mensagemPadrao);
-			mensagemPadrao.setText(stringExtra[6]);
+			if(perfil.mensagemPadrao!=null)
+				mensagemPadrao.setText(perfil.mensagemPadrao);
+		}
+		else{
+			perfil = null;
+			Button excluir = (Button) findViewById(R.id.excluir);
+			excluir.setText("Cancelar");
 		}
 		
 	}
@@ -62,7 +61,7 @@ public class EditperfilActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.editperfil, menu);
-		return true;
+		return false;
 	}
 
 	@Override
@@ -74,6 +73,60 @@ public class EditperfilActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-		return super.onOptionsItemSelected(item);
+		//return super.onOptionsItemSelected(item);
+		return false;
+	}
+	
+	public void salvar(View view){
+		
+		EditText nome = (EditText) findViewById(R.id.nome);
+		SeekBar volume = (SeekBar) findViewById(R.id.volume);			
+		CheckBox vibrar = (CheckBox) findViewById(R.id.vibrar);
+		CheckBox recusarChamadas = (CheckBox) findViewById(R.id.recusarChamadas);
+		CheckBox responderChamadas = (CheckBox) findViewById(R.id.responderChamadas);
+		EditText mensagemPadrao = (EditText) findViewById(R.id.mensagemPadrao);
+		
+		if(id==0){
+			
+			perfil = new Perfil(listPerfil.size()+1,
+								nome.getText().toString(),
+								volume.getProgress(),
+								vibrar.isChecked(),
+								recusarChamadas.isChecked(),
+								responderChamadas.isChecked(),
+								mensagemPadrao.getText().toString());
+			
+			listPerfil.add(perfil);
+		}
+		else{
+			perfil.nome = nome.getText().toString();
+			perfil.volume = volume.getProgress();
+			perfil.vibrar = vibrar.isChecked();
+			perfil.recursarChamadas = recusarChamadas.isChecked();
+			perfil.responderChamadas = responderChamadas.isChecked();
+			perfil.mensagemPadrao = mensagemPadrao.getText().toString();
+		}
+		
+		
+		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+		i.putExtra("LISTPERFIL", listPerfil);
+		startActivity(i);
+
+	}
+	
+	public void excluir(View view){
+		
+		if(id!=0){
+			listPerfil.remove(id-1);
+		
+			for(int id = 1; id <= listPerfil.size(); id++){
+				listPerfil.get(id-1).id = id;
+			}
+		}
+		
+		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+		i.putExtra("LISTPERFIL", listPerfil);
+		startActivity(i);
+		
 	}
 }

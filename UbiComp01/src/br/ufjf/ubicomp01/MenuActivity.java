@@ -1,5 +1,7 @@
 package br.ufjf.ubicomp01;
 
+import java.util.ArrayList;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MenuActivity extends ListActivity {
+	
+	private ArrayList<Perfil> listPerfil;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,9 @@ public class MenuActivity extends ListActivity {
 	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 	        R.layout.activity_menu, R.id.label, values);
 	    setListAdapter(adapter);
+	    
+	    Intent i = getIntent();
+	    listPerfil = (ArrayList<Perfil>) i.getSerializableExtra("LISTPERFIL");
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -26,6 +33,7 @@ public class MenuActivity extends ListActivity {
 		
 		case 0 : {
 			Intent i = new Intent(getApplicationContext(), ListPerfilActivity.class);
+			i.putExtra("LISTPERFIL", listPerfil);
 			startActivity(i);
 			break;
 		}

@@ -1,5 +1,7 @@
 package br.ufjf.ubicomp01;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +11,8 @@ import android.view.View;
 
 
 public class MainActivity extends Activity {
+	
+	private ArrayList<Perfil> listPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +29,48 @@ public class MainActivity extends Activity {
 				} catch (InterruptedException e){
 					e.printStackTrace();
 				} finally {
+					buildListPerfil();
 					Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+					i.putExtra("LISTPERFIL", listPerfil );
 					startActivity(i);
 				}
 			}
 		};
 		timer.start();
     }
+    
+    private void buildListPerfil(){
+		
+		listPerfil = new ArrayList<Perfil>();
+		
+		listPerfil.add(new Perfil(
+				1,
+				"Silencioso com vibração",
+				50,
+				true,
+				false,
+				false,
+				null));
+		
+		listPerfil.add(new Perfil(
+				2,
+				"Silencioso sem vibração",
+				0,
+				false,
+				false,
+				false,
+				null));	
+		
+		listPerfil.add(new Perfil(
+				3,
+				"Ocupado",
+				0,
+				false,
+				false,
+				true,
+				"Estou ocupado"));	
+		
+	}
 
 
     @Override

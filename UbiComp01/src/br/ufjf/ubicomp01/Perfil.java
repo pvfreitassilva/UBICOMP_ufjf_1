@@ -1,7 +1,13 @@
 package br.ufjf.ubicomp01;
 
-public class Perfil {
+import java.io.Serializable;
+
+public class Perfil implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String nome;
 	public int id;
 	public int volume;
@@ -22,10 +28,6 @@ public class Perfil {
 		
 		
 	}
-	
-	@Override 
-	public String toString(){
-		return id + "," + nome + "," + volume + "," + vibrar + "," + recursarChamadas + "," + responderChamadas + "," + mensagemPadrao; 
-	}
+
 	
 }
