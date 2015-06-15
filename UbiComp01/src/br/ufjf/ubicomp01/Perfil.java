@@ -25,7 +25,7 @@ public class Perfil {
 	
 	@Override 
 	public String toString(){
-		return id + "," + volume + "," + vibrar + "," + recursarChamadas + "," + "," + responderChamadas + "," + mensagemPadrao; 
+		return id + "," + nome + "," + volume + "," + vibrar + "," + recursarChamadas + "," + responderChamadas + "," + mensagemPadrao; 
 	}
 	
 }

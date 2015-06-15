@@ -8,96 +8,102 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="br.ufjf.ubicomp01.EditperfilActivity" >
 
+    
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginRight="14dp"
         android:layout_marginTop="32dp"
-        android:layout_toLeftOf="@+id/editText1"
+        android:layout_toLeftOf="@+id/nome"
         android:text="Nome:" />
-
-    <EditText
+    
+    
+     <EditText
         android:id="@+id/nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_alignBaseline="@+id/textViewNome"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
         android:ems="10"
         android:text="Só mensagens" />
+     
+     
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewVolume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/nome"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:text="Volume" />
-
+    
     <SeekBar
         android:id="@+id/volume"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@+id/textViewVolume"
+        android:layout_marginTop="16dp" />
+    
+    
+    
+     <CheckBox
+        android:id="@+id/vibrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/volume"
+        android:checked="true"
+        android:text="Vibrar" />
+     
+     
+    
+     <CheckBox
+        android:id="@+id/recusarChamadas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vibrar"
+        android:text="Recusar chamadas" />
+     
+    
+    
+      <CheckBox
+        android:id="@+id/responderChamadas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recusarChamadas"
+        android:checked="true"
+        android:text="Responder chamada com mensagem" />
 
     <EditText
         android:id="@+id/mensagemPadrao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/salvar"
-        android:layout_alignLeft="@+id/responderChamadas"
-        android:layout_alignRight="@+id/responderChamadas"
+        android:layout_below="@+id/responderChamadas"
         android:layout_marginBottom="14dp"
         android:ems="10"
         android:text="Mensagem padrão" />
-
-    <CheckBox
-        android:id="@+id/responderChamadas"
+    
+    <Button
+        android:id="@+id/salvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/mensagemPadrao"
-        android:layout_alignLeft="@+id/volume"
-        android:checked="true"
-        android:text="Responder chamada com mensagem" />
-
-    <CheckBox
-        android:id="@+id/recusarChamadas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/responderChamadas"
-        android:layout_alignLeft="@+id/vibrar"
-        android:text="Recusar chamadas" />
-
-    <CheckBox
-        android:id="@+id/vibrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/recusarChamadas"
-        android:layout_alignLeft="@+id/volume"
-        android:checked="true"
-        android:text="Vibrar" />
+        android:layout_below="@+id/mensagemPadrao"
+        android:text="Salvar" />
 
     <Button
         android:id="@+id/excluir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/mensagemPadrao"
-        android:layout_marginBottom="81dp"
+        android:layout_toRightOf="@+id/salvar"
+        android:layout_below="@+id/mensagemPadrao"
+        android:layout_marginLeft="20dp"
         android:text="Excluir" />
 
-    <Button
-        android:id="@+id/salvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/excluir"
-        android:layout_alignBottom="@+id/excluir"
-        android:layout_alignLeft="@+id/mensagemPadrao"
-        android:text="Salvar" />
+    
+
+   
 
 </RelativeLayout>

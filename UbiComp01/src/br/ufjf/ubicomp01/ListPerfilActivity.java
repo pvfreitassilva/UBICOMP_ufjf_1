@@ -43,11 +43,11 @@ public class ListPerfilActivity extends ListActivity {
 		listPerfil.add(new Perfil(
 						1,
 						"Silencioso com vibração",
-						0,
+						50,
 						true,
 						false,
 						false,
-						null));
+						" "));
 		
 		listPerfil.add(new Perfil(
 				2,
@@ -56,7 +56,7 @@ public class ListPerfilActivity extends ListActivity {
 				false,
 				false,
 				false,
-				null));	
+				" "));	
 		
 		listPerfil.add(new Perfil(
 				3,
@@ -72,7 +72,7 @@ public class ListPerfilActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 	    //String item = (String) getListAdapter().getItem(position);
 		
-		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+		Intent i = new Intent(getApplicationContext(), EditperfilActivity.class);
 		if(position>0){
 			i.putExtra("EDITPERFIL", listPerfil.get(position-1).toString());
 			i.putExtra("NOVOPERFIL", false);
