@@ -32,8 +32,21 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MenuActivity"
+            android:label="@string/title_activity_menu" >
+            <intent-filter>
+                <action android:name="br.edu.ufjf.UbiComp01.MENU" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".EditperfilActivity"
             android:label="@string/title_activity_editperfil" >
+        </activity>
+        <activity
+            android:name=".ListPerfilActivity"
+            android:label="@string/title_activity_list_perfil" >
         </activity>
     </application>
 

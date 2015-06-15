@@ -12,8 +12,25 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+    	
+    	super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		Thread timer = new Thread(){
+			public void run(){
+				try {
+					sleep(1000);
+				} catch (InterruptedException e){
+					e.printStackTrace();
+				} finally {
+					Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+					startActivity(i);
+				}
+			}
+		};
+		timer.start();
     }
 
 

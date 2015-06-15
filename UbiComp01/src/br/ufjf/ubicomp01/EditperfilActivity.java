@@ -1,6 +1,7 @@
 package br.ufjf.ubicomp01;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,17 @@ public class EditperfilActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Intent i = getIntent();
+		String stringExtra[];
+		
+		if(i.getBooleanExtra("NOVOPERFIL", false)==false){
+			
+			stringExtra = i.getStringExtra("EDITPERFIL").split(",");
+			
+		}
+		
+		
 		setContentView(R.layout.editperfil);
 	}
 

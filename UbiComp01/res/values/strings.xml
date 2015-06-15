@@ -15,5 +15,7 @@
 
     <string name="title_activity_perfis">Marcar local</string>
     <string name="title_activity_editperfil">Editar perfil</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="title_activity_list_perfil">ListPerfilActivity</string>
 
 </resources>
