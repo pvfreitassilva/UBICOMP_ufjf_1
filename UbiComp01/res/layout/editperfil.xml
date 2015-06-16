@@ -55,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/volume"
-        android:checked="true"
         android:text="Vibrar" />
      
      
@@ -74,7 +73,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/recusarChamadas"
-        android:checked="true"
         android:text="Responder chamada com mensagem" />
 
     <EditText

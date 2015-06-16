@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name"></string>
+    <string name="app_name">CALo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -15,7 +15,8 @@
 
     <string name="title_activity_perfis">Marcar local</string>
     <string name="title_activity_editperfil">Editar perfil</string>
-    <string name="title_activity_menu">Menu</string>
-    <string name="title_activity_list_perfil">ListPerfilActivity</string>
+    <string name="title_activity_menu">CALo</string>
+    <string name="title_activity_list_perfil">Perfis</string>
+    <string name="title_activity_marcar_local">Marcar Local</string>
 
 </resources>

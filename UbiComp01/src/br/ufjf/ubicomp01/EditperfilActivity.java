@@ -36,15 +36,21 @@ public class EditperfilActivity extends Activity {
 		
 		if(id!=0){
 			perfil = listPerfil.get(id-1);
+			
 			EditText nome = (EditText) findViewById(R.id.nome);
 			nome.setText(perfil.nome);
+			
 			volume.setProgress(perfil.volume);
+			
 			CheckBox vibrar = (CheckBox) findViewById(R.id.vibrar);
-			vibrar.setSelected(perfil.vibrar);
+			vibrar.setChecked(perfil.vibrar);
+			
 			CheckBox recusarChamadas = (CheckBox) findViewById(R.id.recusarChamadas);
-			recusarChamadas.setSelected(perfil.recursarChamadas);
+			recusarChamadas.setChecked(perfil.recursarChamadas);
+			
 			CheckBox responderChamadas = (CheckBox) findViewById(R.id.responderChamadas);
-			responderChamadas.setSelected(perfil.responderChamadas);
+			responderChamadas.setChecked(perfil.responderChamadas);
+			
 			EditText mensagemPadrao = (EditText) findViewById(R.id.mensagemPadrao);
 			if(perfil.mensagemPadrao!=null)
 				mensagemPadrao.setText(perfil.mensagemPadrao);
@@ -88,13 +94,23 @@ public class EditperfilActivity extends Activity {
 		
 		if(id==0){
 			
-			perfil = new Perfil(listPerfil.size()+1,
-								nome.getText().toString(),
-								volume.getProgress(),
-								vibrar.isChecked(),
-								recusarChamadas.isChecked(),
-								responderChamadas.isChecked(),
-								mensagemPadrao.getText().toString());
+			if(mensagemPadrao.getText().toString() == "Mensagem padrão" ||
+					mensagemPadrao.getText().toString() == "")
+				perfil = new Perfil(listPerfil.size()+1,
+									nome.getText().toString(),
+									volume.getProgress(),
+									vibrar.isChecked(),
+									recusarChamadas.isChecked(),
+									responderChamadas.isChecked(),
+									null);
+			else
+				perfil = new Perfil(listPerfil.size()+1,
+									nome.getText().toString(),
+									volume.getProgress(),
+									vibrar.isChecked(),
+									recusarChamadas.isChecked(),
+									responderChamadas.isChecked(),
+									mensagemPadrao.getText().toString());				
 			
 			listPerfil.add(perfil);
 		}

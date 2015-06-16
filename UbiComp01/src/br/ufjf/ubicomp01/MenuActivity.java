@@ -38,12 +38,13 @@ public class MenuActivity extends ListActivity {
 			break;
 		}
 		case 1 : {
-			Intent i = new Intent(getApplicationContext(), MenuActivity.class);
-			startActivity(i);
+//			Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+//			startActivity(i);
 			break;
 		}
 		case 2 : {
-			Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+			Intent i = new Intent(getApplicationContext(), MarcarLocalActivity.class);
+			i.putExtra("LISTPERFIL", listPerfil);
 			startActivity(i);
 			break;
 		}

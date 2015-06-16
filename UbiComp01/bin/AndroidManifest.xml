@@ -48,6 +48,10 @@
             android:name=".ListPerfilActivity"
             android:label="@string/title_activity_list_perfil" >
         </activity>
+        <activity
+            android:name=".MarcarLocalActivity"
+            android:label="@string/title_activity_marcar_local" >
+        </activity>
     </application>
 
 </manifest>
