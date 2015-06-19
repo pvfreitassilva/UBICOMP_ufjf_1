@@ -11,7 +11,7 @@ import android.view.View;
 
 public class MarcarLocalActivity extends Activity {
 	
-	private ArrayList<Perfil> listPerfil;
+	private Dados dados;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +19,12 @@ public class MarcarLocalActivity extends Activity {
 		setContentView(R.layout.activity_marcar_local);
 		
 		Intent i = getIntent();
-	    listPerfil = (ArrayList<Perfil>) i.getSerializableExtra("LISTPERFIL");
+		dados = (Dados) i.getSerializableExtra("dados");
 	}
 	
 	public void avancar(View view){
     	Intent i = new Intent(this, MenuActivity.class);
-    	i.putExtra("LISTPERFIL", listPerfil);
+    	i.putExtra("dados", dados);
     	startActivity(i);
     	
     }

@@ -11,19 +11,19 @@ import android.widget.ListView;
 
 public class MenuActivity extends ListActivity {
 	
-	private ArrayList<Perfil> listPerfil;
+	private Dados dados;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	    String[] values = new String[] { "Perfis", "Meus locais", "Marcar local atual" };
+	    String[] values = new String[] { "Perfis", "Meus locais", "Marcar local atual", "Status" };
 	    // use your custom layout
 	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 	        R.layout.activity_menu, R.id.label, values);
 	    setListAdapter(adapter);
 	    
 	    Intent i = getIntent();
-	    listPerfil = (ArrayList<Perfil>) i.getSerializableExtra("LISTPERFIL");
+	    dados = (Dados) i.getSerializableExtra("dados");
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -33,18 +33,25 @@ public class MenuActivity extends ListActivity {
 		
 		case 0 : {
 			Intent i = new Intent(getApplicationContext(), ListPerfilActivity.class);
-			i.putExtra("LISTPERFIL", listPerfil);
+			i.putExtra("dados", dados);
 			startActivity(i);
 			break;
 		}
 		case 1 : {
-//			Intent i = new Intent(getApplicationContext(), MenuActivity.class);
-//			startActivity(i);
+			Intent i = new Intent(getApplicationContext(), ListLocalActivity.class);
+			i.putExtra("dados", dados);
+			startActivity(i);
 			break;
 		}
 		case 2 : {
 			Intent i = new Intent(getApplicationContext(), MarcarLocalActivity.class);
-			i.putExtra("LISTPERFIL", listPerfil);
+			i.putExtra("dados", dados);
+			startActivity(i);
+			break;
+		}
+		case 3 : {
+			Intent i = new Intent(getApplicationContext(), StatusActivity.class);
+			i.putExtra("dados", dados);
 			startActivity(i);
 			break;
 		}

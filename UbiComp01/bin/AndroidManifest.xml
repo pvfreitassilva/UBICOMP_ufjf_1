@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EditperfilActivity"
+            android:name=".EditPerfilActivity"
             android:label="@string/title_activity_editperfil" >
         </activity>
         <activity
@@ -51,6 +51,18 @@
         <activity
             android:name=".MarcarLocalActivity"
             android:label="@string/title_activity_marcar_local" >
+        </activity>
+        <activity
+            android:name=".ListLocalActivity"
+            android:label="@string/title_activity_list_local" >
+        </activity>
+        <activity
+            android:name=".EditLocalActivity"
+            android:label="@string/title_activity_edit_local" >
+        </activity>
+        <activity
+            android:name=".StatusActivity"
+            android:label="@string/title_activity_status" >
         </activity>
     </application>
 

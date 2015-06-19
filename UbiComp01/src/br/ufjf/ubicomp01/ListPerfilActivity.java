@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 public class ListPerfilActivity extends ListActivity {
 
-	private ArrayList<Perfil> listPerfil;
+	private Dados dados;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,17 +20,16 @@ public class ListPerfilActivity extends ListActivity {
 		
 		Intent intent = getIntent();
 		
-		listPerfil = (ArrayList<Perfil>) intent.getSerializableExtra("LISTPERFIL");
+		dados = (Dados) intent.getSerializableExtra("dados");		
 		
-		
-		int size = listPerfil.size() + 1;
+		int size = dados.listPerfil.size() + 1;
 		
 	    String[] values = new String[size];
 	    
 	    values[0] = "< Criar novo >";
 	    
 	    for(int i = 1; i< size; i++){
-	    	values[i] = listPerfil.get(i-1).nome;
+	    	values[i] = dados.listPerfil.get(i-1).nome;
 	    }	    
 	    
 	    // use your custom layout
@@ -44,8 +43,8 @@ public class ListPerfilActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 	    //String item = (String) getListAdapter().getItem(position);
 		
-		Intent i = new Intent(getApplicationContext(), EditperfilActivity.class);
-		i.putExtra("LISTPERFIL", listPerfil);
+		Intent i = new Intent(getApplicationContext(), EditPerfilActivity.class);
+		i.putExtra("dados", dados);
 		i.putExtra("ID", position);
 		startActivity(i);
 	

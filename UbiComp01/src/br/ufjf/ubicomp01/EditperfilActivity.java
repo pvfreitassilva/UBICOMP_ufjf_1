@@ -13,9 +13,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
-public class EditperfilActivity extends Activity {
+public class EditPerfilActivity extends Activity {
 	
-	private ArrayList<Perfil> listPerfil;
+	private Dados dados;
 	private int id;
 	private Perfil perfil;
 
@@ -30,12 +30,12 @@ public class EditperfilActivity extends Activity {
 		
 		Intent intent = getIntent();
 		
-		listPerfil = (ArrayList<Perfil>) intent.getSerializableExtra("LISTPERFIL");
+		dados = (Dados) intent.getSerializableExtra("dados");
 		
 		id = intent.getIntExtra("ID", -1);
 		
 		if(id!=0){
-			perfil = listPerfil.get(id-1);
+			perfil = dados.listPerfil.get(id-1);
 			
 			EditText nome = (EditText) findViewById(R.id.nome);
 			nome.setText(perfil.nome);
@@ -96,7 +96,7 @@ public class EditperfilActivity extends Activity {
 			
 			if(mensagemPadrao.getText().toString() == "Mensagem padrão" ||
 					mensagemPadrao.getText().toString() == "")
-				perfil = new Perfil(listPerfil.size()+1,
+				perfil = new Perfil(dados.listPerfil.size()+1,
 									nome.getText().toString(),
 									volume.getProgress(),
 									vibrar.isChecked(),
@@ -104,7 +104,7 @@ public class EditperfilActivity extends Activity {
 									responderChamadas.isChecked(),
 									null);
 			else
-				perfil = new Perfil(listPerfil.size()+1,
+				perfil = new Perfil(dados.listPerfil.size()+1,
 									nome.getText().toString(),
 									volume.getProgress(),
 									vibrar.isChecked(),
@@ -112,7 +112,7 @@ public class EditperfilActivity extends Activity {
 									responderChamadas.isChecked(),
 									mensagemPadrao.getText().toString());				
 			
-			listPerfil.add(perfil);
+			dados.listPerfil.add(perfil);
 		}
 		else{
 			perfil.nome = nome.getText().toString();
@@ -125,7 +125,7 @@ public class EditperfilActivity extends Activity {
 		
 		
 		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
-		i.putExtra("LISTPERFIL", listPerfil);
+		i.putExtra("dados", dados);
 		startActivity(i);
 
 	}
@@ -133,15 +133,15 @@ public class EditperfilActivity extends Activity {
 	public void excluir(View view){
 		
 		if(id!=0){
-			listPerfil.remove(id-1);
+			dados.listPerfil.remove(id-1);
 		
-			for(int id = 1; id <= listPerfil.size(); id++){
-				listPerfil.get(id-1).id = id;
+			for(int id = 1; id <= dados.listPerfil.size(); id++){
+				dados.listPerfil.get(id-1).id = id;
 			}
 		}
 		
 		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
-		i.putExtra("LISTPERFIL", listPerfil);
+		i.putExtra("dados", dados);
 		startActivity(i);
 		
 	}

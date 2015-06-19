@@ -6,11 +6,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="br.ufjf.ubicomp01.EditperfilActivity" >
+    tools:context="br.ufjf.ubicomp01.EditPerfilActivity" >
 
     
     <TextView
-        android:id="@+id/textViewNome"
+        android:id="@+id/editPerfilNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -24,7 +24,7 @@
         android:id="@+id/nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewNome"
+        android:layout_alignBaseline="@+id/editPerfilNome"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:ems="10"
@@ -33,7 +33,7 @@
      
 
     <TextView
-        android:id="@+id/textViewVolume"
+        android:id="@+id/editPerfilVolume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nome"
@@ -44,7 +44,7 @@
         android:id="@+id/volume"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewVolume"
+        android:layout_below="@+id/editPerfilVolume"
         android:layout_marginTop="16dp" />
     
     

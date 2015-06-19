@@ -32,29 +32,39 @@ public final class R {
         public static final int map3=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000f;
+        public static final int action_settings=0x7f090016;
         public static final int avancar=0x7f090004;
-        public static final int excluir=0x7f09000e;
+        public static final int editPerfilNome=0x7f09000c;
+        public static final int editPerfilVolume=0x7f09000e;
+        public static final int excluir=0x7f090015;
         public static final int imageView1=0x7f090001;
         public static final int label=0x7f090000;
-        public static final int mensagemPadrao=0x7f09000c;
-        public static final int nome=0x7f090006;
-        public static final int recusarChamadas=0x7f09000a;
-        public static final int responderChamadas=0x7f09000b;
-        public static final int salvar=0x7f09000d;
+        public static final int mensagemPadrao=0x7f090013;
+        public static final int nome=0x7f09000d;
+        public static final int recusarChamadas=0x7f090011;
+        public static final int responderChamadas=0x7f090012;
+        public static final int salvar=0x7f090014;
         public static final int seekBar1=0x7f090002;
         public static final int textView1=0x7f090003;
-        public static final int textViewNome=0x7f090005;
+        public static final int textViewLocal=0x7f090005;
+        public static final int textViewMensagem=0x7f09000b;
+        public static final int textViewPerfil=0x7f090006;
+        public static final int textViewRecusar=0x7f090009;
+        public static final int textViewResponder=0x7f09000a;
+        public static final int textViewVibrar=0x7f090008;
         public static final int textViewVolume=0x7f090007;
-        public static final int vibrar=0x7f090009;
-        public static final int volume=0x7f090008;
+        public static final int vibrar=0x7f090010;
+        public static final int volume=0x7f09000f;
     }
     public static final class layout {
-        public static final int activity_list_perfil=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_marcar_local=0x7f030002;
-        public static final int activity_menu=0x7f030003;
-        public static final int editperfil=0x7f030004;
+        public static final int activity_edit_local=0x7f030000;
+        public static final int activity_list_local=0x7f030001;
+        public static final int activity_list_perfil=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_marcar_local=0x7f030004;
+        public static final int activity_menu=0x7f030005;
+        public static final int activity_status=0x7f030006;
+        public static final int editperfil=0x7f030007;
     }
     public static final class menu {
         public static final int editperfil=0x7f080000;
@@ -65,11 +75,14 @@ public final class R {
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050001;
+        public static final int title_activity_edit_local=0x7f050009;
         public static final int title_activity_editperfil=0x7f050004;
+        public static final int title_activity_list_local=0x7f050008;
         public static final int title_activity_list_perfil=0x7f050006;
         public static final int title_activity_marcar_local=0x7f050007;
         public static final int title_activity_menu=0x7f050005;
         public static final int title_activity_perfis=0x7f050003;
+        public static final int title_activity_status=0x7f05000a;
     }
     public static final class style {
         /** 

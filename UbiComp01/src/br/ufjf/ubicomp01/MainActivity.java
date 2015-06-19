@@ -13,7 +13,7 @@ import android.view.Window;
 
 public class MainActivity extends Activity {
 	
-	private ArrayList<Perfil> listPerfil;
+	public Dados dados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,58 +29,15 @@ public class MainActivity extends Activity {
 				} catch (InterruptedException e){
 					e.printStackTrace();
 				} finally {
-					buildListPerfil();
+					dados = new Dados();
 					Intent i = new Intent(getApplicationContext(), MenuActivity.class);
-					i.putExtra("LISTPERFIL", listPerfil );
+					i.putExtra("dados", dados );
 					startActivity(i);
 				}
 			}
 		};
 		timer.start();
     }
-    
-    private void buildListPerfil(){
-		
-		listPerfil = new ArrayList<Perfil>();
-		
-		listPerfil.add(new Perfil(
-				1,
-				"Silencioso com vibração",
-				50,
-				true,
-				false,
-				false,
-				null));
-		
-		listPerfil.add(new Perfil(
-				2,
-				"Silencioso sem vibração",
-				0,
-				false,
-				false,
-				false,
-				null));	
-		
-		listPerfil.add(new Perfil(
-				3,
-				"Ocupado",
-				0,
-				false,
-				false,
-				true,
-				"Estou ocupado"));
-		
-		listPerfil.add(new Perfil(
-				4,
-				"Geral",
-				100,
-				true,
-				false,
-				false,
-				null));	
-		
-	}
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
