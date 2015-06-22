@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 public class EditPerfilActivity extends Activity {
 	
@@ -92,6 +93,7 @@ public class EditPerfilActivity extends Activity {
 		CheckBox responderChamadas = (CheckBox) findViewById(R.id.responderChamadas);
 		EditText mensagemPadrao = (EditText) findViewById(R.id.mensagemPadrao);
 		
+		
 		if(id==0){
 			
 			if(mensagemPadrao.getText().toString() == "Mensagem padrão" ||
@@ -112,7 +114,10 @@ public class EditPerfilActivity extends Activity {
 									responderChamadas.isChecked(),
 									mensagemPadrao.getText().toString());				
 			
-			dados.listPerfil.add(perfil);
+			//dados.listPerfil.add(perfil);
+			BDController crud = new BDController(getBaseContext());
+			String resultado = crud.inserePerfil(perfil);
+			Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 		}
 		else{
 			perfil.nome = nome.getText().toString();
