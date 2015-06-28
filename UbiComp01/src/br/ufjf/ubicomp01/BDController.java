@@ -67,4 +67,32 @@ public class BDController {
         db.delete(banco.TABELA,where,null);
         db.close();
     }
+	
+	public Cursor listaTodosPerfis(){
+		db = banco.getReadableDatabase();
+
+		Cursor cursor = db.rawQuery("SELECT * FROM " + CriaPerfilBD.TABELA, null);
+
+		if (cursor != null) {
+			return cursor;
+		}
+		
+		db.close();
+		return null;
+	}
+	
+	public Cursor getPerfilById(int id){
+		db = banco.getReadableDatabase();
+
+		Cursor cursor = db.rawQuery("SELECT * FROM " + CriaPerfilBD.TABELA
+				+ " WHERE " + CriaPerfilBD.ID + " = " + id, null);
+
+		if (cursor != null) {
+			
+			return cursor;
+		}
+		
+		db.close();
+		return null;
+	}
 }

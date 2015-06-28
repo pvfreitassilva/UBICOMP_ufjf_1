@@ -18,12 +18,9 @@ import android.widget.Toast;
 
 public class EditPerfilActivity extends Activity {
 
-	private Dados dados;
 	private int id;
 	private Perfil perfil;
-
-	private static SQLiteDatabase sqliteDB = null;
-
+    private Dados dados;
 	private Cursor cursor;
 
 	@Override
@@ -42,29 +39,29 @@ public class EditPerfilActivity extends Activity {
 		id = intent.getIntExtra("ID", -1);
 
 		if (id != 0) {
-			sqliteDB = this.openOrCreateDatabase(CriaPerfilBD.NOME_BANCO,
-					MODE_PRIVATE, null);
-
-			cursor = sqliteDB.rawQuery("SELECT * FROM " + CriaPerfilBD.TABELA
-					+ " WHERE " + CriaPerfilBD.ID + " = " + id, null);
+			BDController crud = new BDController(getBaseContext());
+			cursor = crud.getPerfilById(id);
 
 			if (cursor != null) {
 				cursor.moveToFirst();
-			}
-			
-			sqliteDB.close();
 
-			perfil = new Perfil(
-					id,
-					cursor.getString(cursor.getColumnIndex(CriaPerfilBD.NOME)),
-					cursor.getInt(cursor.getColumnIndex(CriaPerfilBD.VOLUME)),
-					cursor.getInt(cursor.getColumnIndex(CriaPerfilBD.VIBRAR)) == 1 ? true
-							: false,
-					cursor.getInt(cursor.getColumnIndex(CriaPerfilBD.RECUSAR_CHAMADAS)) == 1 ? true
-							: false, cursor.getInt(cursor
-							.getColumnIndex(CriaPerfilBD.RESPONDER_CHAMADAS)) == 1 ? true
-							: false, cursor.getString(cursor
-							.getColumnIndex(CriaPerfilBD.MENSAGEM_PADRAO)));
+				perfil = new Perfil(
+						id,
+						cursor.getString(cursor
+								.getColumnIndex(CriaPerfilBD.NOME)),
+						cursor.getInt(cursor
+								.getColumnIndex(CriaPerfilBD.VOLUME)),
+						cursor.getInt(cursor
+								.getColumnIndex(CriaPerfilBD.VIBRAR)) == 1 ? true
+								: false,
+						cursor.getInt(cursor
+								.getColumnIndex(CriaPerfilBD.RECUSAR_CHAMADAS)) == 1 ? true
+								: false,
+						cursor.getInt(cursor
+								.getColumnIndex(CriaPerfilBD.RESPONDER_CHAMADAS)) == 1 ? true
+								: false, cursor.getString(cursor
+								.getColumnIndex(CriaPerfilBD.MENSAGEM_PADRAO)));
+			}
 
 			EditText nome = (EditText) findViewById(R.id.nome);
 			nome.setText(perfil.nome);
@@ -138,7 +135,7 @@ public class EditPerfilActivity extends Activity {
 
 			BDController crud = new BDController(getBaseContext());
 			String resultado = crud.inserePerfil(perfil);
-			
+
 		} else {
 			perfil.nome = nome.getText().toString();
 			perfil.volume = volume.getProgress();

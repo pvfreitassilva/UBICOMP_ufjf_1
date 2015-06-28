@@ -1,12 +1,8 @@
 package br.ufjf.ubicomp01;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,8 +11,6 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class ListPerfilActivity extends ListActivity {
-
-	private static SQLiteDatabase sqliteDB = null;
 
 	private Cursor cursor;
 
@@ -30,11 +24,9 @@ public class ListPerfilActivity extends ListActivity {
 
 		String[] values = new String[size];
 
-		sqliteDB = this.openOrCreateDatabase(CriaPerfilBD.NOME_BANCO,
-				MODE_PRIVATE, null);
+		BDController crud = new BDController(getBaseContext());
 
-		cursor = sqliteDB
-				.rawQuery("SELECT * FROM " + CriaPerfilBD.TABELA, null);
+		cursor = crud.listaTodosPerfis();
 
 		if (cursor != null) {
 
@@ -51,8 +43,6 @@ public class ListPerfilActivity extends ListActivity {
 				} while (cursor.moveToNext());
 			}
 		}
-		
-		sqliteDB.close();
 
 		values[0] = "< Criar novo >";
 
