@@ -29,61 +29,67 @@ public class EditPerfilActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.editperfil);
-		
+
 		SeekBar volume = (SeekBar) findViewById(R.id.volume);
 		volume.setMax(100);
-		
+
 		Intent intent = getIntent();
-		
+
 		dados = (Dados) intent.getSerializableExtra("dados");
-		
+
 		id = intent.getIntExtra("ID", -1);
-		
-		sqliteDB = this.openOrCreateDatabase(CriaPerfilBD.NOME_BANCO,
-				MODE_PRIVATE, null);
 
-		cursor = sqliteDB.rawQuery("SELECT * FROM "
-				+ CriaPerfilBD.TABELA + " WHERE " + CriaPerfilBD.ID +  " = " + id, null);
+		if (id != 0) {
+			sqliteDB = this.openOrCreateDatabase(CriaPerfilBD.NOME_BANCO,
+					MODE_PRIVATE, null);
 
-		if (cursor != null) {
-			cursor.moveToFirst();
-		}
-		
-		if(id!=0){
-			perfil = new Perfil(id, 
-					cursor.getString(cursor.getColumnIndex("NOME")), 
-					cursor.getInt(cursor.getColumnIndex("VOLUME")), 
-					cursor.getInt(cursor.getColumnIndex("VIBRAR")) == 1 ? true : false, 
-					cursor.getInt(cursor.getColumnIndex("RECUSAR_CHAMADAS")) == 1 ? true : false, 
-					cursor.getInt(cursor.getColumnIndex("RESPONDER_CHAMADAS")) == 1 ? true : false, 
-					cursor.getString(cursor.getColumnIndex("MENSAGEM_PADRAO")));
+			cursor = sqliteDB.rawQuery("SELECT * FROM " + CriaPerfilBD.TABELA
+					+ " WHERE " + CriaPerfilBD.ID + " = " + id, null);
+
+			if (cursor != null) {
+				cursor.moveToFirst();
+			}
 			
+			sqliteDB.close();
+
+			perfil = new Perfil(
+					id,
+					cursor.getString(cursor.getColumnIndex(CriaPerfilBD.NOME)),
+					cursor.getInt(cursor.getColumnIndex(CriaPerfilBD.VOLUME)),
+					cursor.getInt(cursor.getColumnIndex(CriaPerfilBD.VIBRAR)) == 1 ? true
+							: false,
+					cursor.getInt(cursor.getColumnIndex(CriaPerfilBD.RECUSAR_CHAMADAS)) == 1 ? true
+							: false, cursor.getInt(cursor
+							.getColumnIndex(CriaPerfilBD.RESPONDER_CHAMADAS)) == 1 ? true
+							: false, cursor.getString(cursor
+							.getColumnIndex(CriaPerfilBD.MENSAGEM_PADRAO)));
+
 			EditText nome = (EditText) findViewById(R.id.nome);
-			nome.setText(cursor.getString(cursor.getColumnIndex("NOME")));
-			
-			volume.setProgress(cursor.getInt(cursor.getColumnIndex("VOLUME")));
-			
+			nome.setText(perfil.nome);
+
+			volume.setProgress(perfil.volume);
+
 			CheckBox vibrar = (CheckBox) findViewById(R.id.vibrar);
-			vibrar.setChecked(cursor.getInt(cursor.getColumnIndex("VIBRAR")) == 1 ? true : false);
-			
+			vibrar.setChecked(perfil.vibrar);
+
 			CheckBox recusarChamadas = (CheckBox) findViewById(R.id.recusarChamadas);
-			recusarChamadas.setChecked(cursor.getInt(cursor.getColumnIndex("RECUSAR_CHAMADAS")) == 1 ? true : false);
-			
+			recusarChamadas.setChecked(perfil.recursarChamadas);
+
 			CheckBox responderChamadas = (CheckBox) findViewById(R.id.responderChamadas);
-			responderChamadas.setChecked(cursor.getInt(cursor.getColumnIndex("RESPONDER_CHAMADAS")) == 1 ? true : false);
-			
+			responderChamadas.setChecked(perfil.responderChamadas);
+
 			EditText mensagemPadrao = (EditText) findViewById(R.id.mensagemPadrao);
-			if(cursor.getString(cursor.getColumnIndex("MENSAGEM_PADRAO")) !=null &&  !cursor.getString(cursor.getColumnIndex("MENSAGEM_PADRAO")).equals(""))
-				mensagemPadrao.setText(cursor.getString(cursor.getColumnIndex("MENSAGEM_PADRAO")));
-		}
-		else{
+			if (perfil.mensagemPadrao != null
+					&& !perfil.mensagemPadrao.equals(""))
+				mensagemPadrao.setText(perfil.mensagemPadrao);
+		} else {
 			perfil = null;
 			Button excluir = (Button) findViewById(R.id.excluir);
 			excluir.setText("Cancelar");
 		}
-		
+
 	}
 
 	@Override
@@ -130,11 +136,9 @@ public class EditPerfilActivity extends Activity {
 						responderChamadas.isChecked(), mensagemPadrao.getText()
 								.toString());
 
-			// dados.listPerfil.add(perfil);
 			BDController crud = new BDController(getBaseContext());
 			String resultado = crud.inserePerfil(perfil);
-			Toast.makeText(getApplicationContext(), resultado,
-					Toast.LENGTH_LONG).show();
+			
 		} else {
 			perfil.nome = nome.getText().toString();
 			perfil.volume = volume.getProgress();
@@ -144,11 +148,10 @@ public class EditPerfilActivity extends Activity {
 			perfil.mensagemPadrao = mensagemPadrao.getText().toString();
 
 			BDController crud = new BDController(getBaseContext());
-			crud.alteraRegistro(perfil);
+			crud.alteraPerfil(perfil);
 		}
 
 		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
-		i.putExtra("dados", dados);
 		startActivity(i);
 
 	}
@@ -156,15 +159,11 @@ public class EditPerfilActivity extends Activity {
 	public void excluir(View view) {
 
 		if (id != 0) {
-			dados.listPerfil.remove(id - 1);
-
-			for (int id = 1; id <= dados.listPerfil.size(); id++) {
-				dados.listPerfil.get(id - 1).id = id;
-			}
+			BDController crud = new BDController(getBaseContext());
+			crud.deletaPerfil(perfil);
 		}
 
 		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
-		i.putExtra("dados", dados);
 		startActivity(i);
 
 	}

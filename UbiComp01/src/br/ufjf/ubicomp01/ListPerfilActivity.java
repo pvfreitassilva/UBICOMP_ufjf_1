@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 public class ListPerfilActivity extends ListActivity {
 
-	private Dados dados;
-
 	private static SQLiteDatabase sqliteDB = null;
 
 	private Cursor cursor;
@@ -47,12 +45,14 @@ public class ListPerfilActivity extends ListActivity {
 
 				do {
 					String nome = cursor.getString(cursor
-							.getColumnIndex("NOME"));
+							.getColumnIndex(CriaPerfilBD.NOME));
 					values[i] = nome;
 					i++;
 				} while (cursor.moveToNext());
 			}
 		}
+		
+		sqliteDB.close();
 
 		values[0] = "< Criar novo >";
 

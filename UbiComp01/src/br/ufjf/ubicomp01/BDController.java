@@ -37,7 +37,7 @@ public class BDController {
 			return "Perfil Inserido com sucesso";
 	}
 	
-	public void alteraRegistro(Perfil p){
+	public void alteraPerfil(Perfil p){
         ContentValues valores = new ContentValues();
         String where;
  
@@ -53,6 +53,18 @@ public class BDController {
 		valores.put(banco.MENSAGEM_PADRAO, p.mensagemPadrao);
  
         db.update(banco.TABELA,valores,where,null);
+        db.close();
+    }
+	
+	public void deletaPerfil(Perfil p){
+        
+        String where;
+ 
+        db = banco.getReadableDatabase();
+ 
+        where = banco.ID + " = " + p.id;
+ 
+        db.delete(banco.TABELA,where,null);
         db.close();
     }
 }
