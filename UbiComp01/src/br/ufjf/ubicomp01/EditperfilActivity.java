@@ -98,7 +98,7 @@ public class EditPerfilActivity extends Activity {
 			
 			if(mensagemPadrao.getText().toString() == "Mensagem padrão" ||
 					mensagemPadrao.getText().toString() == "")
-				perfil = new Perfil(dados.listPerfil.size()+1,
+				perfil = new Perfil(0,
 									nome.getText().toString(),
 									volume.getProgress(),
 									vibrar.isChecked(),
@@ -106,7 +106,7 @@ public class EditPerfilActivity extends Activity {
 									responderChamadas.isChecked(),
 									null);
 			else
-				perfil = new Perfil(dados.listPerfil.size()+1,
+				perfil = new Perfil(0,
 									nome.getText().toString(),
 									volume.getProgress(),
 									vibrar.isChecked(),
