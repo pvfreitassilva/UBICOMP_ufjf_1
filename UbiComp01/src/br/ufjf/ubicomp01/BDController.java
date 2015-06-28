@@ -36,4 +36,23 @@ public class BDController {
 		else
 			return "Perfil Inserido com sucesso";
 	}
+	
+	public void alteraRegistro(Perfil p){
+        ContentValues valores = new ContentValues();
+        String where;
+ 
+        db = banco.getWritableDatabase();
+ 
+        where = banco.ID + " = " + p.id;
+ 
+        valores.put(banco.NOME, p.nome);
+		valores.put(banco.VOLUME, p.volume);
+		valores.put(banco.VIBRAR, p.vibrar ? 1 : 0);
+		valores.put(banco.RECUSAR_CHAMADAS, p.recursarChamadas ? 1 : 0);
+		valores.put(banco.RESPONDER_CHAMADAS, p.responderChamadas ? 1 : 0);
+		valores.put(banco.MENSAGEM_PADRAO, p.mensagemPadrao);
+ 
+        db.update(banco.TABELA,valores,where,null);
+        db.close();
+    }
 }

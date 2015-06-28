@@ -18,37 +18,9 @@ public class ListPerfilActivity extends ListActivity {
 
 	private Dados dados;
 
-	private ListView lista;
-
 	private static SQLiteDatabase sqliteDB = null;
 
-	// @Override
-	// protected void onCreate(Bundle savedInstanceState) {
-	// super.onCreate(savedInstanceState);
-	// setContentView(R.layout.activity_list_bd);
-	//
-	// BDController crud = new BDController(getBaseContext());
-	// final Cursor cursor = crud.carregaPerfis();
-	//
-	// if (cursor != null) {
-	// do {
-	// String bookName = cursor.getString(cursor.getColumnIndex("NOME"));
-	//
-	// } while (cursor.moveToNext());
-	//
-	// }
-	//
-	// String[] nomeCampos = new String[] { CriaPerfilBD.ID, CriaPerfilBD.NOME
-	// };
-	// int[] idViews = new int[] { R.id.idLivro, R.id.nomeLivro };
-	//
-	// SimpleCursorAdapter adaptador = new SimpleCursorAdapter(
-	// getBaseContext(), R.layout.perfil_layout, cursor, nomeCampos,
-	// idViews, 0);
-	// lista = (ListView) findViewById(R.id.list);
-	// lista.setAdapter(adaptador);
-	//
-	// }
+	private Cursor cursor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +35,8 @@ public class ListPerfilActivity extends ListActivity {
 		sqliteDB = this.openOrCreateDatabase(CriaPerfilBD.NOME_BANCO,
 				MODE_PRIVATE, null);
 
-		Cursor cursor = sqliteDB.rawQuery("SELECT * FROM "
-				+ CriaPerfilBD.TABELA, null);
+		cursor = sqliteDB
+				.rawQuery("SELECT * FROM " + CriaPerfilBD.TABELA, null);
 
 		if (cursor != null) {
 
@@ -91,12 +63,19 @@ public class ListPerfilActivity extends ListActivity {
 	}
 
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// String item = (String) getListAdapter().getItem(position);
-
 		Intent i = new Intent(getApplicationContext(), EditPerfilActivity.class);
-		i.putExtra("dados", dados);
-		i.putExtra("ID", position);
-		startActivity(i);
+		if (position == 0) {
+			i.putExtra("ID", 0);
+			startActivity(i);
+		} else {
+			int codigo;
+			cursor.moveToPosition(position - 1);
+			codigo = cursor.getInt(cursor
+					.getColumnIndexOrThrow(CriaPerfilBD.ID));
+			
+			i.putExtra("ID", codigo);
+			startActivity(i);
+		}
 
 		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
 	}
