@@ -64,6 +64,7 @@
             android:name=".StatusActivity"
             android:label="@string/title_activity_status" >
         </activity>
+        <service android:name=".CaloService" />
     </application>
 
 </manifest>

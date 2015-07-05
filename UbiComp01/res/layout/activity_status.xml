@@ -67,5 +67,25 @@
         android:layout_below="@+id/textViewResponder"
         android:layout_marginTop="18dp"
         android:text="" />
+    
+     <Button
+            android:id="@+id/startCalo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/finishCalo"
+            android:layout_alignLeft="@+id/finishCalo"
+            android:layout_alignRight="@+id/finishCalo"
+            android:text="Iniciar Calo"
+            android:onClick="startCalo" />
+
+       <Button
+           android:id="@+id/finishCalo"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_centerHorizontal="true"
+           android:layout_marginBottom="25dp"
+           android:onClick="finishCalo"
+           android:text="Parar Calo" />
 
 </RelativeLayout>

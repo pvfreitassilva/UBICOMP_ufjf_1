@@ -3,6 +3,7 @@ package br.ufjf.ubicomp01;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class StatusActivity extends Activity {
@@ -63,5 +64,15 @@ public class StatusActivity extends Activity {
 			else
 				textView.setText("Perfil atual: < nenhum >");
 		}
+	}
+	
+	public void startCalo(View view){
+		Intent intent = new Intent(this, CaloService.class);
+		startService(intent);
+	}
+	
+	public void finishCalo(View view){
+		Intent intent = new Intent(this, CaloService.class);
+		stopService(intent);
 	}
 }
