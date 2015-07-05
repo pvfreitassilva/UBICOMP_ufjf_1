@@ -1,14 +1,20 @@
 package br.ufjf.ubicomp01;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class StatusActivity extends Activity {
 	
 	private Dados dados;
+	GPSTracker gps;
 
 	@Override
 	
@@ -66,13 +72,37 @@ public class StatusActivity extends Activity {
 		}
 	}
 	
-	public void startCalo(View view){
-		Intent intent = new Intent(this, CaloService.class);
-		startService(intent);
+	public void startCalo(View view){		
+		
+		gps = new GPSTracker(StatusActivity.this);
+		
+		if(gps.canGetLocation()) {
+			double latitude = gps.getLatitude();
+			double longitude = gps.getLongitude();
+			
+			TextView textViewLat = (TextView) findViewById(R.id.textViewLatitude);
+			textViewLat.setText("Latitude: " + String.valueOf(latitude));
+			
+			TextView textViewLong = (TextView) findViewById(R.id.textViewLongitudee);
+			textViewLong.setText("Longitude: " + String.valueOf(longitude));
+			
+			Toast.makeText(
+					getApplicationContext(),
+					"Localização: \nLatitude: " + latitude + "\nLongitude: "
+							+ longitude, Toast.LENGTH_LONG).show();
+		} else {
+			gps.showSettingsAlert();
+		}
+		
+		
+
+		
+		//Intent intent = new Intent(this, CaloService.class);
+		//startService(intent);
 	}
 	
 	public void finishCalo(View view){
-		Intent intent = new Intent(this, CaloService.class);
-		stopService(intent);
+		//Intent intent = new Intent(this, CaloService.class);
+		//stopService(intent);
 	}
 }

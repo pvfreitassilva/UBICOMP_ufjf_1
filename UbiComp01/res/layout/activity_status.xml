@@ -72,11 +72,29 @@
             android:id="@+id/startCalo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/finishCalo"
-            android:layout_alignLeft="@+id/finishCalo"
-            android:layout_alignRight="@+id/finishCalo"
+            android:layout_above="@+id/textViewLatitude"
+            android:layout_alignLeft="@+id/textViewLatitude"
+            android:layout_alignRight="@+id/textViewLatitude"
             android:text="Iniciar Calo"
             android:onClick="startCalo" />
+     
+     <TextView
+        android:id="@+id/textViewLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewLongitudee"
+        android:layout_alignLeft="@+id/textViewLongitudee"
+        android:layout_alignRight="@+id/textViewLongitudee"
+        android:text="Latitude: " />
+     
+     <TextView
+        android:id="@+id/textViewLongitudee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/finishCalo"
+        android:layout_alignLeft="@+id/finishCalo"
+        android:layout_alignRight="@+id/finishCalo"
+        android:text="Longitude: " />
 
        <Button
            android:id="@+id/finishCalo"
