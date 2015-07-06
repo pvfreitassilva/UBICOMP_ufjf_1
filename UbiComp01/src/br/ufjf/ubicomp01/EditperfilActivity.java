@@ -20,7 +20,7 @@ public class EditPerfilActivity extends Activity {
 
 	private int id;
 	private Perfil perfil;
-    private Dados dados;
+    //private Dados dados;
 	private Cursor cursor;
 
 	@Override
@@ -34,7 +34,7 @@ public class EditPerfilActivity extends Activity {
 
 		Intent intent = getIntent();
 
-		dados = (Dados) intent.getSerializableExtra("dados");
+		//dados = (Dados) intent.getSerializableExtra("dados");
 
 		id = intent.getIntExtra("ID", -1);
 
@@ -48,19 +48,19 @@ public class EditPerfilActivity extends Activity {
 				perfil = new Perfil(
 						id,
 						cursor.getString(cursor
-								.getColumnIndex(CriaPerfilBD.NOME)),
+								.getColumnIndex(CriaBD.NOME)),
 						cursor.getInt(cursor
-								.getColumnIndex(CriaPerfilBD.VOLUME)),
+								.getColumnIndex(CriaBD.VOLUME)),
 						cursor.getInt(cursor
-								.getColumnIndex(CriaPerfilBD.VIBRAR)) == 1 ? true
+								.getColumnIndex(CriaBD.VIBRAR)) == 1 ? true
 								: false,
 						cursor.getInt(cursor
-								.getColumnIndex(CriaPerfilBD.RECUSAR_CHAMADAS)) == 1 ? true
+								.getColumnIndex(CriaBD.RECUSAR_CHAMADAS)) == 1 ? true
 								: false,
 						cursor.getInt(cursor
-								.getColumnIndex(CriaPerfilBD.RESPONDER_CHAMADAS)) == 1 ? true
+								.getColumnIndex(CriaBD.RESPONDER_CHAMADAS)) == 1 ? true
 								: false, cursor.getString(cursor
-								.getColumnIndex(CriaPerfilBD.MENSAGEM_PADRAO)));
+								.getColumnIndex(CriaBD.MENSAGEM_PADRAO)));
 			}
 
 			EditText nome = (EditText) findViewById(R.id.nome);
@@ -135,6 +135,8 @@ public class EditPerfilActivity extends Activity {
 
 			BDController crud = new BDController(getBaseContext());
 			String resultado = crud.inserePerfil(perfil);
+			Toast.makeText(getBaseContext(),resultado,
+					Toast.LENGTH_SHORT).show();
 
 		} else {
 			perfil.nome = nome.getText().toString();
@@ -159,6 +161,10 @@ public class EditPerfilActivity extends Activity {
 			BDController crud = new BDController(getBaseContext());
 			crud.deletaPerfil(perfil);
 		}
+		
+		Toast.makeText(getBaseContext(),"Perfil excluido",
+				Toast.LENGTH_SHORT).show();
+
 
 		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
 		startActivity(i);

@@ -83,7 +83,7 @@ public class StatusActivity extends Activity {
 			TextView textViewLat = (TextView) findViewById(R.id.textViewLatitude);
 			textViewLat.setText("Latitude: " + String.valueOf(latitude));
 			
-			TextView textViewLong = (TextView) findViewById(R.id.textViewLongitudee);
+			TextView textViewLong = (TextView) findViewById(R.id.textViewLongitude);
 			textViewLong.setText("Longitude: " + String.valueOf(longitude));
 			
 			Toast.makeText(
@@ -97,12 +97,12 @@ public class StatusActivity extends Activity {
 		
 
 		
-		//Intent intent = new Intent(this, CaloService.class);
-		//startService(intent);
+		Intent intent = new Intent(this, CaloService.class);
+		startService(intent);
 	}
 	
 	public void finishCalo(View view){
-		//Intent intent = new Intent(this, CaloService.class);
-		//stopService(intent);
+		Intent intent = new Intent(this, CaloService.class);
+		stopService(intent);
 	}
 }

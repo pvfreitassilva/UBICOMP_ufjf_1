@@ -1,15 +1,65 @@
 package br.ufjf.ubicomp01;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class ListLocalActivity extends Activity {
+public class ListLocalActivity extends ListActivity {
+
+	private Cursor cursor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_list_local);
+
+		int size = 1;
+
+		int i = 0;
+
+		String[] values = new String[size];
+
+		BDController crud = new BDController(getBaseContext());
+
+		cursor = crud.listaTodosLocais();
+
+		if (cursor != null) {
+
+			size = cursor.getCount();
+			values = new String[size];
+
+			if (cursor.moveToFirst()) {
+
+				do {
+					String nome = cursor.getString(cursor
+							.getColumnIndex(CriaBD.NOME));
+					values[i] = nome;
+					i++;
+				} while (cursor.moveToNext());
+			}
+		}
+
+		//values[0] = "< Criar novo >";
+
+		// use your custom layout
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.activity_menu, R.id.label, values);
+		setListAdapter(adapter);
+	}
+
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Intent i = new Intent(getApplicationContext(), EditLocalActivity.class);
+		int codigo;
+		cursor.moveToPosition(position);
+		codigo = cursor.getInt(cursor
+				.getColumnIndexOrThrow(CriaBD.ID));
+			
+		i.putExtra("ID", codigo);
+		startActivity(i);
+
+		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
 	}
 }

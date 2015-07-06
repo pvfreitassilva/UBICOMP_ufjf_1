@@ -11,7 +11,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.util.Log;
 
 public class GPSTracker extends Service implements LocationListener{
 
@@ -151,7 +150,10 @@ public class GPSTracker extends Service implements LocationListener{
 	@Override
 	public void onLocationChanged(Location arg0) {
 		// TODO Auto-generated method stub
-		
+		latitude = location.getLatitude();
+        longitude = location.getLongitude();
+        location.setLatitude(latitude);
+        location.setLongitude(longitude);
 	}
 
 	@Override

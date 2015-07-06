@@ -21,5 +21,6 @@
     <string name="title_activity_list_local">ListLocalActivity</string>
     <string name="title_activity_edit_local">EditLocalActivity</string>
     <string name="title_activity_status">StatusActivity</string>
+    <string name="title_activity_criar_local">CriarLocalActivity</string>
 
 </resources>

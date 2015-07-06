@@ -11,16 +11,18 @@ public class Local implements Serializable{
 	 */
 	private static final long serialVersionUID = -7600496918702007198L;
 	
+	public int id;
 	public String nome;
-	public Perfil perfil;
-	public Perfil perfilPadrao;
+	public int id_perfil;
+	//public int id_perfilPadrao;
 	Location local;
 	int raio;
 	
-	public Local(String nome, Perfil perfil, Perfil perfilPadrao, Location local, int raio){
+	public Local(int id, String nome, int id_perfil, Location local, int raio){
+		this.id = id;
 		this.nome = nome; 
-		this.perfil = perfil;
-		this.perfilPadrao = perfilPadrao;
+		this.id_perfil = id_perfil;
+		//this.perfilPadrao = perfilPadrao;
 		this.local = local;
 		this.raio = raio;
 	}

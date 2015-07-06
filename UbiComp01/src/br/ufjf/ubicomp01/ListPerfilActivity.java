@@ -37,7 +37,7 @@ public class ListPerfilActivity extends ListActivity {
 
 				do {
 					String nome = cursor.getString(cursor
-							.getColumnIndex(CriaPerfilBD.NOME));
+							.getColumnIndex(CriaBD.NOME));
 					values[i] = nome;
 					i++;
 				} while (cursor.moveToNext());
@@ -61,7 +61,7 @@ public class ListPerfilActivity extends ListActivity {
 			int codigo;
 			cursor.moveToPosition(position - 1);
 			codigo = cursor.getInt(cursor
-					.getColumnIndexOrThrow(CriaPerfilBD.ID));
+					.getColumnIndexOrThrow(CriaBD.ID));
 			
 			i.putExtra("ID", codigo);
 			startActivity(i);

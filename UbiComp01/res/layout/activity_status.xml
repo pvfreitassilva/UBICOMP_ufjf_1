@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="32dp"
-        android:text="" />
+        android:text="Local" />
 
     <TextView
         android:id="@+id/textViewPerfil"
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewLocal"
         android:layout_below="@+id/textViewLocal"
-        android:layout_marginTop="18dp"
-        android:text="" />
+        android:layout_marginTop="5dp"
+        android:text="Perfil" />
     
     <TextView
         android:id="@+id/textViewVolume"
@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewLocal"
         android:layout_below="@+id/textViewPerfil"
-        android:layout_marginTop="18dp"
-        android:text="" />
+        android:layout_marginTop="5dp"
+        android:text="Volume" />
     
     <TextView
         android:id="@+id/textViewVibrar"
@@ -38,8 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewLocal"
         android:layout_below="@+id/textViewVolume"
-        android:layout_marginTop="18dp"
-        android:text="" />
+        android:layout_marginTop="5dp"
+        android:text="Vibrar" />
     
     <TextView
         android:id="@+id/textViewRecusar"
@@ -47,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewLocal"
         android:layout_below="@+id/textViewVibrar"
-        android:layout_marginTop="18dp"
-        android:text="" />
+        android:layout_marginTop="5dp"
+        android:text="Recusar" />
     
     <TextView
         android:id="@+id/textViewResponder"
@@ -56,8 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewLocal"
         android:layout_below="@+id/textViewRecusar"
-        android:layout_marginTop="18dp"
-        android:text="" />
+        android:layout_marginTop="5dp"
+        android:text="Responder" />
     
     <TextView
         android:id="@+id/textViewMensagem"
@@ -65,42 +65,42 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewLocal"
         android:layout_below="@+id/textViewResponder"
-        android:layout_marginTop="18dp"
-        android:text="" />
+        android:layout_marginTop="5dp"
+        android:text="Mensagem" />
+    
+    <TextView
+        android:id="@+id/textViewLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewMensagem"
+        android:layout_alignLeft="@+id/textViewMensagem"
+        android:layout_marginTop="5dp"
+        android:text="Latitude: " />
+     
+     <TextView
+        android:id="@+id/textViewLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewLatitude"
+        android:layout_alignLeft="@+id/textViewLatitude"
+        android:layout_marginTop="5dp"
+        android:text="Longitude: " />
     
      <Button
             android:id="@+id/startCalo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textViewLatitude"
-            android:layout_alignLeft="@+id/textViewLatitude"
-            android:layout_alignRight="@+id/textViewLatitude"
+            android:layout_below="@+id/textViewLongitude"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:text="Iniciar Calo"
             android:onClick="startCalo" />
      
-     <TextView
-        android:id="@+id/textViewLatitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textViewLongitudee"
-        android:layout_alignLeft="@+id/textViewLongitudee"
-        android:layout_alignRight="@+id/textViewLongitudee"
-        android:text="Latitude: " />
-     
-     <TextView
-        android:id="@+id/textViewLongitudee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/finishCalo"
-        android:layout_alignLeft="@+id/finishCalo"
-        android:layout_alignRight="@+id/finishCalo"
-        android:text="Longitude: " />
-
        <Button
            android:id="@+id/finishCalo"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_alignParentBottom="true"
+           android:layout_below="@+id/startCalo"
            android:layout_centerHorizontal="true"
            android:layout_marginBottom="25dp"
            android:onClick="finishCalo"
