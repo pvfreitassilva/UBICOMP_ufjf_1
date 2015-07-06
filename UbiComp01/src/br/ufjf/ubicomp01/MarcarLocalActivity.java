@@ -89,7 +89,8 @@ public class MarcarLocalActivity extends Activity implements OnMapReadyCallback 
 	}
 	
 	public void avancar(View view){
-    	Intent i = new Intent(this, MenuActivity.class);
+    	Intent i = new Intent(this, EditLocalActivity.class);
+    	i.putExtra("novo", true);
     	i.putExtra("latitude", latitude);
     	i.putExtra("longitude", longitude);
     	i.putExtra("raio", raio);

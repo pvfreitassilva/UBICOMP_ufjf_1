@@ -12,10 +12,11 @@
         android:id="@+id/editTextNomeLocal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spinner1"
+        android:layout_alignLeft="@+id/spinnerPerfis"
         android:layout_alignParentTop="true"
         android:ems="10"
-        android:text="Nome" >
+        android:text="Nome"
+        android:inputType="text" >
 
         <requestFocus />
     </EditText>
@@ -24,17 +25,28 @@
         android:id="@+id/spinnerPerfis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/editTextNomeLocal"
         android:layout_centerHorizontal="true"
-        android:entries="@array/opcoes" />
+        android:entries="@array/listaPerfis" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonConcluirLocal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner1"
+        android:layout_below="@+id/spinnerPerfis"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="Concluir" />
+        android:text="Concluir"
+        android:onClick="salvar" />
+    
+    <Button
+        android:id="@+id/buttonExcluirLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonConcluirLocal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Excluir"
+        android:onClick="excluir" />
 
 </RelativeLayout>

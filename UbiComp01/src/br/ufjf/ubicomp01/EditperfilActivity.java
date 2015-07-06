@@ -1,11 +1,9 @@
 package br.ufjf.ubicomp01;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,15 +20,18 @@ public class EditPerfilActivity extends Activity {
 	private Perfil perfil;
     //private Dados dados;
 	private Cursor cursor;
+	private AudioManager mAudioManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.editperfil);
+		
+		mAudioManager = (AudioManager) getSystemService(getBaseContext().AUDIO_SERVICE);
 
 		SeekBar volume = (SeekBar) findViewById(R.id.volume);
-		volume.setMax(100);
+		volume.setMax(mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
 
 		Intent intent = getIntent();
 

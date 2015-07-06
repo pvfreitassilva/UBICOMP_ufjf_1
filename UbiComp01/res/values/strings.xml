@@ -5,7 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string-array name="opcoes">
+    <string-array name="listaPerfis">
         <item>Perfil atual</item>
         <item>Silencioso (com vibração)</item>
         <item>Silencioso (sem vibração)</item>
@@ -18,9 +18,9 @@
     <string name="title_activity_menu">CALo</string>
     <string name="title_activity_list_perfil">Perfis</string>
     <string name="title_activity_marcar_local">Marcar Local</string>
-    <string name="title_activity_list_local">ListLocalActivity</string>
-    <string name="title_activity_edit_local">EditLocalActivity</string>
-    <string name="title_activity_status">StatusActivity</string>
-    <string name="title_activity_criar_local">CriarLocalActivity</string>
+    <string name="title_activity_list_local">Locais salvos</string>
+    <string name="title_activity_edit_local">Editar local</string>
+    <string name="title_activity_status">Status</string>
+    <string name="title_activity_criar_local">Criar Local</string>
 
 </resources>

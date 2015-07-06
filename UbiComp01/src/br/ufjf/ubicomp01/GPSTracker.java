@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.widget.Toast;
 
 public class GPSTracker extends Service implements LocationListener{
 
@@ -20,7 +21,7 @@ public class GPSTracker extends Service implements LocationListener{
 	boolean isNetworkEnabled = false;
 	boolean canGetLocation = false;
 	
-	Location location;
+	Location location = new Location("Local");;
 	
 	double latitude;
 	double longitude;
@@ -148,12 +149,15 @@ public class GPSTracker extends Service implements LocationListener{
 	}
 	
 	@Override
-	public void onLocationChanged(Location arg0) {
+	public void onLocationChanged(Location l) {
 		// TODO Auto-generated method stub
-		latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        location.setLatitude(latitude);
-        location.setLongitude(longitude);
+		//Toast.makeText(getApplicationContext(), "Localizacao alterada ", Toast.LENGTH_LONG).show();
+		if(l!=null){
+			latitude = l.getLatitude();
+	        longitude = l.getLongitude();
+	        location.setLatitude(latitude);
+	        location.setLongitude(longitude);
+		}
 	}
 
 	@Override

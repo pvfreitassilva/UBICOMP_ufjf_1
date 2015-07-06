@@ -96,6 +96,24 @@ public class BDController {
 		return null;
 	}
 	
+	public Cursor getPerfilByName(String name){
+		db = banco.getReadableDatabase();
+
+		if(name==null)
+			return null;
+		
+		Cursor cursor = db.rawQuery("SELECT * FROM " + CriaBD.TABELA_PERFIL
+				+ " WHERE " + CriaBD.NOME + " LIKE '" + name + "'", null);
+
+		if (cursor != null) {
+			
+			return cursor;
+		}
+		
+		db.close();
+		return null;
+	}
+	
 	
 	
 	

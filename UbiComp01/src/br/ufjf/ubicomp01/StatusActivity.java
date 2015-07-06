@@ -94,8 +94,8 @@ public class StatusActivity extends Activity {
 			gps.showSettingsAlert();
 		}
 		
-		
-
+		//Intent i = new Intent(this, GPSTracker.class);
+		//startService(i);
 		
 		Intent intent = new Intent(this, CaloService.class);
 		startService(intent);
@@ -103,6 +103,7 @@ public class StatusActivity extends Activity {
 	
 	public void finishCalo(View view){
 		Intent intent = new Intent(this, CaloService.class);
+		//Intent intent = new Intent(this, GPSTracker.class);
 		stopService(intent);
 	}
 }
