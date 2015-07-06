@@ -1,11 +1,8 @@
 package br.ufjf.ubicomp01;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +17,7 @@ public class EditPerfilActivity extends Activity {
 
 	private int id;
 	private Perfil perfil;
-    private Dados dados;
+    //private Dados dados;
 	private Cursor cursor;
 
 	@Override
@@ -34,7 +31,7 @@ public class EditPerfilActivity extends Activity {
 
 		Intent intent = getIntent();
 
-		dados = (Dados) intent.getSerializableExtra("dados");
+		//dados = (Dados) intent.getSerializableExtra("dados");
 
 		id = intent.getIntExtra("ID", -1);
 
@@ -135,6 +132,8 @@ public class EditPerfilActivity extends Activity {
 
 			BDController crud = new BDController(getBaseContext());
 			String resultado = crud.inserePerfil(perfil);
+			Toast.makeText(getBaseContext(),resultado,
+					Toast.LENGTH_SHORT).show();
 
 		} else {
 			perfil.nome = nome.getText().toString();
@@ -146,6 +145,9 @@ public class EditPerfilActivity extends Activity {
 
 			BDController crud = new BDController(getBaseContext());
 			crud.alteraPerfil(perfil);
+			Toast.makeText(getBaseContext(),"Perfil alterado",
+					Toast.LENGTH_SHORT).show();
+
 		}
 
 		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
@@ -159,6 +161,10 @@ public class EditPerfilActivity extends Activity {
 			BDController crud = new BDController(getBaseContext());
 			crud.deletaPerfil(perfil);
 		}
+		
+		Toast.makeText(getBaseContext(),"Perfil excluido",
+				Toast.LENGTH_SHORT).show();
+
 
 		Intent i = new Intent(getApplicationContext(), MenuActivity.class);
 		startActivity(i);

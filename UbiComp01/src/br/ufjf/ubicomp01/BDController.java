@@ -34,7 +34,7 @@ public class BDController {
 		if (resultado == -1)
 			return "Erro ao inserir registro";
 		else
-			return "Perfil Inserido com sucesso";
+			return "Perfil inserido com sucesso";
 	}
 	
 	public void alteraPerfil(Perfil p){
