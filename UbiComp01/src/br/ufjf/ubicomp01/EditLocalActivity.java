@@ -45,13 +45,11 @@ public class EditLocalActivity extends Activity {
 			
 		}else{
 			
-			//IMPLEMENTAR AQUI PARA EDITAR PERFIL
+			//IMPLEMENTAR AQUI PARA EDITAR LOCAL
 			
 			
 			
 		}
-		
-		
 		
 		spinnerPerfis = (Spinner) findViewById(R.id.spinnerPerfis);		
 		
@@ -67,9 +65,13 @@ public class EditLocalActivity extends Activity {
 		values.add("< Selecione >");
 		
 		BDController crud = new BDController(getBaseContext());
+		
+		Log.d("teste", "teste1");
 
 		cursor = crud.listaTodosPerfis();
 
+		Log.d("teste", "teste2");
+		
 		if (cursor != null) {
 
 			//size = size + cursor.getCount();
@@ -100,15 +102,13 @@ public class EditLocalActivity extends Activity {
 	
 	public void salvar(View view){
 		
-		String nome_perfil = (String) spinnerPerfis.getSelectedItem();
+		String nome_perfil = spinnerPerfis.getSelectedItem().toString();
+		
+		Log.d("teste", nome_perfil);
 		
 		BDController crud = new BDController(getBaseContext());
 		
-		
-		
 		Cursor cursor = crud.getPerfilByName(nome_perfil);
-		
-		
 		
 		Local l;
 		

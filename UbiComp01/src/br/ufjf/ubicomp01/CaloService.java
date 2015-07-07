@@ -12,6 +12,8 @@ public class CaloService extends IntentService {
 	Double longitude = 0d;
 	Double latitude = 0d;
 	GPSTracker gps;
+	//Local localAtual = null;
+	//Perfil perfilAtual = null;
 	
 	public CaloService() {
 		super("CaloService");
@@ -31,7 +33,7 @@ public class CaloService extends IntentService {
 			 synchronized (this) {
 				 try {
 					 //wait(endTime - System.currentTimeMillis());
-					 wait(5000);
+					 wait(15000);
 					 
 					 gps = new GPSTracker(this);
 					 
@@ -59,30 +61,53 @@ public class CaloService extends IntentService {
 									Location locAux = new Location("Aux");
 									locAux.setLatitude(latiAux);
 									locAux.setLongitude(longAux);
+
+									//Log.d("teste", "Lat: "+gps.getLocation().getLatitude()+" Long: "+gps.getLocation().getLongitude());
 									
-									//Toast.makeText(this,
-									//		"Lat: "+gps.getLocation().getLatitude()+" Long: "+gps.getLocation().getLongitude(),
-									//		Toast.LENGTH_SHORT).show();
-									Log.d("teste", "Lat: "+gps.getLocation().getLatitude()+" Long: "+gps.getLocation().getLongitude());
-									
-									
-									if(locAux.distanceTo(gps.getLocation()) <= raio  ){
+									if( locAux.distanceTo(gps.getLocation()) <= raio  ){
 										
-										Cursor perfis = crud.getPerfilById( cursor.getColumnIndex(CriaBD.ID_PERFIL));
+										crud.ativarLocal( cursor.getInt(cursor.getColumnIndex(CriaBD.ID) ));
+										
+										//String nome = cursor.getString( (cursor.getColumnIndex(CriaBD.NOME)  ) );
+										//int id_perfil = cursor.getInt( cursor.getColumnIndex(CriaBD.ID_PERFIL));
+										
+										//localAtual = new Local(-1, nome, id_perfil, gps.getLocation(), raio);
+										
+										//Cursor perfis = crud.getPerfilById( id_perfil );
 										
 										Log.d("teste", "Entrando em local salvo");
 										
-										if(perfis!=null){
+										//if(perfis!=null){
+											
+											/*perfilAtual = new Perfil(
+													id_perfil,
+													perfis.getString(perfis
+															.getColumnIndex(CriaBD.NOME)),
+															perfis.getInt(perfis
+															.getColumnIndex(CriaBD.VOLUME)),
+															perfis.getInt(perfis
+															.getColumnIndex(CriaBD.VIBRAR)) == 1 ? true
+															: false,
+															perfis.getInt(perfis
+															.getColumnIndex(CriaBD.RECUSAR_CHAMADAS)) == 1 ? true
+															: false,
+															perfis.getInt(perfis
+															.getColumnIndex(CriaBD.RESPONDER_CHAMADAS)) == 1 ? true
+															: false, perfis.getString(perfis
+															.getColumnIndex(CriaBD.MENSAGEM_PADRAO)));
+															*/
 											
 											//TODO ALTERAR CONFIGS DO APARELHO AQUI
 											
-										}
+										//}
 										
 									}
+									//else
+									//	crud.ativarLocal(-1);
 										
-									} while (cursor.moveToNext());
-							 	}
+								} while (cursor.moveToNext());
 						 	}
+					 	}
 					 }
 				 } catch (Exception e) {
 					 Toast.makeText(this, "Erro no serviço CALo", Toast.LENGTH_SHORT).show();

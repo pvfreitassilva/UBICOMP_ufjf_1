@@ -17,6 +17,7 @@ public class Local implements Serializable{
 	//public int id_perfilPadrao;
 	Location local;
 	int raio;
+	boolean ativo;
 	
 	public Local(int id, String nome, int id_perfil, Location local, int raio){
 		this.id = id;
@@ -25,6 +26,7 @@ public class Local implements Serializable{
 		//this.perfilPadrao = perfilPadrao;
 		this.local = local;
 		this.raio = raio;
+		this.ativo = false;
 	}
 	
 	

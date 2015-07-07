@@ -22,8 +22,12 @@ public class CriaBD extends SQLiteOpenHelper {
     protected static final String LONGITUDE = "LONGITUDE";
     protected static final String ID_PERFIL = "ID_PERFIL";
     protected static final String RAIO = "RAIO";
+    protected static final String ATIVO = "ATIVO";
     
-    protected static final int VERSAO = 3;
+    protected static final String TABELA_LOCAL_ATUAL = "LOCAL_ATUAL";
+    protected static final String ID_LOCAL_ATUAL = "ID_LOCAL_ATUAL";
+    
+    protected static final int VERSAO = 7;
 
     public CriaBD(Context context){
         super(context, NOME_BANCO,null,VERSAO);
@@ -48,7 +52,14 @@ public class CriaBD extends SQLiteOpenHelper {
                 + LATITUDE + " text,"
                 + LONGITUDE + " text,"
                 + RAIO + " integer,"
-                + ID_PERFIL + " integer"
+                + ID_PERFIL + " integer,"
+                + ATIVO + " integer"
+                +")";
+        db.execSQL(sql);
+        
+        sql = "CREATE TABLE "+TABELA_LOCAL_ATUAL+"("
+                + ID + " integer primary key autoincrement,"
+                + ID_LOCAL_ATUAL + " integer"
                 +")";
         db.execSQL(sql);
         
@@ -58,6 +69,7 @@ public class CriaBD extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_PERFIL);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_LOCAL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_LOCAL_ATUAL);
         onCreate(db);
     }
 
